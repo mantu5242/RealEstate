@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import ListingItem from '../Components/ListingItem';    
+=======
+import Listing from '../Components/ListingItem';    
+>>>>>>> 51402aa941ab6dc29c660811b506e60486a61541
 
 const  Search = () => {
   const navigate = useNavigate();

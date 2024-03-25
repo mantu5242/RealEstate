@@ -57,7 +57,6 @@ const deleteListsController = async (req, res, next) => {
   }
 
 const getListController = async(req,res,next) => {
-
   console.log(req.params.id)
   try{
     const list = await listModel.findById(req.params.id);
@@ -103,7 +102,6 @@ const getlistingController = async(req,res,next) => {
     const sort = req.query.sort || 'createAt';
 
     const order = req.query.order || 'desc';
-
     const listings = await listModel.find({
       name: {$regex: searchTerm, $options:'i'},
       offer,
@@ -113,7 +111,6 @@ const getlistingController = async(req,res,next) => {
   }).sort(
     {[sort]:order}
   ).limit(limit).skip(startIndex);
-
   
   return res.status(200).json(listings);
 
