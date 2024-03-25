@@ -120,4 +120,4 @@ const getlistingController = async(req,res,next) => {
   }
 }
 
-module.exports = {createListController,deleteListsController,updateListController,getListController,getlistingController};
+module.exports = {createListController, deleteListsController, updateListController, getListController, getlistingController};

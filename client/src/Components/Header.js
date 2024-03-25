@@ -25,11 +25,11 @@ const Header = () => {
     },[location.search])
 
   return (
-   <header className='bg-slate-200 shadow-md'>
+   <header className='bg-violet-800 shadow-md'>
     <div className='flex justify-between items-center max-6xl mx-10 p-3'>
         <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-            <span className='text-slate-500'>Real</span>
-            <span className='text-slate-700'>Estate</span>  
+            <span className='text-amber-100'>Real</span>
+            <span className='text-red-200'>Estate</span>  
         </h1>
         <form className='bg-slate-100 p-3 rounded-lg flex items-center' onSubmit={handleSubmit}>
             <input type='text' placeholder='Search...' className='bg-transparent focus:outline-none w-24 sm:w-64' value ={searchTerm} onChange ={(e)=>{setSearchTerm(e.target.value)}} ></input>
@@ -38,10 +38,10 @@ const Header = () => {
         </form>
         <ul className='flex gap-4'>
             <Link to='/'>
-                <li className='hover:underline text-slate-700 hidden sm:inline'>Home</li>
+                <li className='hover:underline text-white font-semibold hidden  sm:inline '>Home</li>
             </Link>
             <Link to='/about'>
-                <ii className='hover:underline text-slate-700 hidden sm:inline'>About</ii>
+                <ii className='hover:underline text-white font-semibold hidden sm:inline'>About</ii>
             </Link>
             <Link to='/profile'>
                 {/* {}avatar */}
