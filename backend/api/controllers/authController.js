@@ -8,10 +8,9 @@ const jwt = require('jsonwebtoken')
 
 
 const loginController=async(req,res)=>{
-  // console.log("&&&&")
   try {
       const {email,password}=req.body
-      console.log(email , password);
+    //   console.log(email , password);
       const user=await userModel.findOne({email})
       
       if(!user){
@@ -21,20 +20,15 @@ const loginController=async(req,res)=>{
       if(!isMatch){
           return res.status(200).json({message:'Invalid Email and Password',success:false})
       }
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET,{ expiresIn: '1h' });
       
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-      
-      // res.localstorage()
+      const cookieOptions = {
+        httpOnly: true,
+        expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+    };
       const { password: pass, ...rest } = user._doc;
       res.cookie('access_token', token, { httpOnly: true }).status(200).json(rest);
-    // res.cookie('access_token', token, { httpOnly: true });
-      return res.status(200).json({message:'Login Successful',success:true,rest})
-
-    // return res.status(200).json({
-    // message: 'Login Successful',
-    // success: true,
-    // rest: rest
-    // });
+    
   } catch (error) {
       return res.status(404).json({message:`Error in logging ${error}`,success:false})
   }

@@ -22,7 +22,7 @@ const Registration = () => {
    try{ 
     const res = await fetch('http://localhost:8000/api/auth/register',
     {method:'POST',
-    headers:{
+    headers:{ 
       'Content-type': 'application/json',
     },
     body: JSON.stringify(formData),
@@ -56,7 +56,7 @@ const Registration = () => {
         <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80' type='submit'>{loading ? 'Loading...':'SignUp'}</button>
         {/* <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80' type='submit'>signup</button> */}
         {/* <button className='bg-red-500 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80 '>Continue with google</button> */}
-        <OAuth/>
+        {/* <OAuth/> */}
       </form>
       <div className='flex gap-2 mt-5'>
         <p>Have an account?</p>

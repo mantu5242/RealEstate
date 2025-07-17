@@ -37,7 +37,7 @@ const Profile = () => {
       const fileName = new Date().getTime() + selectedFile.name;
       const storageRef = ref(storage,fileName);
       const uploadTask = uploadBytesResumable(storageRef,selectedFile);
-  
+      console.log(selectedFile)
       uploadTask.on('state_changed',(snapshot) => {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes)*100;
             // console.log('upload is' + progress + '% done');
@@ -47,8 +47,12 @@ const Profile = () => {
             setFileUploadError(true);
           },
           () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
-              setFormData({ ...formData, avatar: downloadURL })
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>{
+              setFormData((prevData) => ({ ...prevData, avatar: downloadURL }));
+          setUpdateSuccess(true);
+            }
+              // setFormData({ ...formData, avatar: downloadURL })
+
             );
           }
       );

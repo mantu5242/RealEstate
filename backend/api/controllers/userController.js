@@ -14,17 +14,17 @@ const testController = async(req,res) => {
 }
 
 const updateUserController = async(req,res,next) => {
-    console.log("update user")
+    // console.log("update user")
     try{
-        console.log(req.body);
-        console.log(req.body.username);
+        // console.log(req.body);
+        // console.log(req.body.username);
         if(req.id != req.params.id) return next(errorHandler(401,"You can only update your own account"))
         // console.log(req.bodyusername)
         if(req.body.password){
             const salt = await bcrypt.genSalt(10);
             req.body.password= await bcrypt.hash(req.body.password,salt);
         }
-        console.log("password bcrypted ")
+        // console.log("password bcrypted ")
         const updateUser = await userModel.findByIdAndUpdate(req.params.id,{
             $set:{
                 username: req.body.username,
@@ -33,7 +33,7 @@ const updateUserController = async(req,res,next) => {
                 avatar:req.body.avatar,
             }
         },{new:true})
-        console.log("update ho gya")
+        // console.log("update ho gya")
         const {password, ...rest} = updateUser._doc
         console.log(updateUser);
 

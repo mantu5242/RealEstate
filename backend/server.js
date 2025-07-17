@@ -5,23 +5,24 @@ const connectDB = require('./Config/db');
 const bodyParser = require("body-parser")
 const cookieParser = require('cookie-parser');
 const router = require("./Routes/UserRoutes")
-mongoose.set('strictQuery', true);
+// mongoose.set('strictQuery', true);
 const cors = require('cors');
 
 
 const app = express();
 
+console.log("beforconnectDb")
+connectDB();
+dotenv.config()
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-dotenv.config()
 
 
 // mongodb connection
-mongoose.set('strictQuery', true)
-connectDB();
+// mongoose.set('strictQuery', true)
 
 // mongoose.connect(process.env.MONGO_URL);
 

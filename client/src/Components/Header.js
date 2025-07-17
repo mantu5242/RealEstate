@@ -46,7 +46,12 @@ const Header = () => {
             <Link to='/profile'>
                 {/* {}avatar */}
                 {/* {console.log("lifniwoenfofowef",currentUser)} */}
-                {currentUser.avatar ?(<img className='rounded-full h-7 w-7' src={currentUser.avatar} alt='profile'></img>):<li className='hover:underline text-slate-700 hidden sm:inline'>Sign In</li>}
+                {currentUser?.avatar ? (
+    <img className='rounded-full h-7 w-7' src={currentUser.avatar} alt='profile'></img>
+) : (
+    <li className='hover:underline text-slate-700 hidden sm:inline'>Sign In</li>
+)}
+
                
             </Link>
         </ul>

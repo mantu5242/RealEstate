@@ -57,7 +57,7 @@ const deleteListsController = async (req, res, next) => {
   }
 
 const getListController = async(req,res,next) => {
-  console.log(req.params.id)
+  // console.log(req.params.id)
   try{
     const list = await listModel.findById(req.params.id);
     
@@ -74,11 +74,11 @@ const getListController = async(req,res,next) => {
 
 const getlistingController = async(req,res,next) => {
   try{
-
+    // console.log("heheee")
     const limit = parseInt(req.query.limit) || 9;
     const startIndex = parseInt(req.query.startIndex)||0;
+    
     let offer = req.query.offer;
-
     if(offer === undefined || offer === 'false'){
       offer = {$in: [false,true]};
     }
@@ -102,13 +102,24 @@ const getlistingController = async(req,res,next) => {
     const sort = req.query.sort || 'createAt';
 
     const order = req.query.order || 'desc';
-    const listings = await listModel.find({
-      name: {$regex: searchTerm, $options:'i'},
-      offer,
-      furnished,
-      parking,
-      type,
-  }).sort(
+  //   const listings = await listModel.find({
+  //     name: {$regex: searchTerm, $options:'i'},
+  //     offer,
+  //     furnished,
+  //     parking,
+  //     type,
+  // })
+  const listings = await listModel.find({
+    $or: [
+      { name: { $regex: searchTerm, $options: 'i' } }, // Search by name
+      { address: { $regex: searchTerm, $options: 'i' } }, // Search by address (location)
+    ],
+    offer,
+    furnished,
+    parking,
+    type,
+  })
+  .sort(
     {[sort]:order}
   ).limit(limit).skip(startIndex);
   

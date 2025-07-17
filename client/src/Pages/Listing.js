@@ -14,7 +14,8 @@ import {
   FaParking,
   FaShare,
 } from 'react-icons/fa';
-import Contact from '../Components/Contacts';
+// import Contact from '../Components/Contacts';
+// import Contacts from '../Components/Contacts';
 import Contacts from '../Components/Contacts';
 
 // https://sabe.io/blog/javascript-format-numbers-commas#:~:text=The%20best%20way%20to%20format,format%20the%20number%20with%20commas.
@@ -60,8 +61,8 @@ const Listing = () => {
     fetchListing();
   }, [params.listId]);
 
-  // console.log(listing.userRef,currentUser._id)
-  console.log(contact)
+  console.log("aa gye sahi page pr")
+  // console.log(contacts,"lvyuycuyfv7")
   // console.log(currentUser,listing.userRef === currentUser._id)
 
   return (
@@ -151,7 +152,8 @@ const Listing = () => {
                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
               </li>
             </ul>
-            {currentUser && listing.userRef === currentUser._id && !contact && (
+            
+            {currentUser && listing.userRef != currentUser._id && !contact && (
               
               <button
                 onClick={() => setContact(true)}
@@ -161,7 +163,7 @@ const Listing = () => {
               </button>
            )}
             {contact && <Contacts listing={listing} />} 
-            
+            {/* console.log(contact) */}
           </div>
         </div>
       )}

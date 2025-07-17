@@ -12,6 +12,7 @@ import UpdateList from './Pages/UpdateList';
 import Listing from './Pages/Listing';
 import Search from './Pages/Search';
 import Header from './Components/Header';
+import Footer from './Components/Footer';
 
 
 
@@ -27,6 +28,7 @@ const App = () => {
             <Route path='/about' element={<About/>}/>
             <Route path='/listing/:id' element={<Listing/>}/>
             <Route path='/search' element={<Search/>}/>
+            {/* <Route path='/' element={<Search/>}/> */}
             <Route element={<PrivateRoute/>}>
               <Route path='/profile' element={<Profile/>} />
               <Route path='/create-listing' element={<CreateList/>} />
@@ -34,6 +36,7 @@ const App = () => {
             </Route>
             
       </Routes>
+      <Footer/>
    </BrowserRouter>
   )
 }
